@@ -5,7 +5,7 @@ publishDir = "public"
 defaultContentLanguage = "fr"
 
 [params]
-  themeVariant = [ "EMMK-dark", "EMMK-light" ]
+  themeVariant = [ "EMMK-light", "EMMK-dark" ]
   alwaysopen = false
   collapsibleMenu = true
   disableInlineCopyToClipBoard = true

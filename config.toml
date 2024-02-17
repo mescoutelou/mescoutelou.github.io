@@ -1,0 +1,41 @@
+baseURL = 'https://mescoutelou.github.io'
+languageCode = 'en-us'
+theme = "relearn"
+publishDir = "public"
+defaultContentLanguage = "fr"
+
+[params]
+  themeVariant = [ "EMMK-dark", "EMMK-light" ]
+  alwaysopen = false
+  collapsibleMenu = true
+  disableInlineCopyToClipBoard = true
+  disableHoverBlockCopyToClipBoard = false
+
+[Languages]
+[Languages.fr]
+title = "ENSEIRB-MATMECA"
+weight = 1
+languageName = "Français"
+[Languages.en]
+title = "ENSEIRB-MATMECA"
+weight = 2
+languageName = "English"
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> GitHub"
+url = "https://github.com/mescoutelou"
+weight = 1
+
+[[Languages.fr.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> GitHub"
+url = "https://github.com/mescoutelou"
+weight = 1
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# For search functionality
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
+page = ["HTML", "RSS"]

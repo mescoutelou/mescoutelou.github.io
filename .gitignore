@@ -1,0 +1,5 @@
+*.vscode
+*.old
+*.hugo_build.lock
+.draft/
+/public

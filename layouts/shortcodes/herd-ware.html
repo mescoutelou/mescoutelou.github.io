@@ -1,0 +1,24 @@
+<!--
+File: herdware.html
+Created Date: 2024-03-14 01:46:29 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-03-14 01:48:54 pm
+Modified By: Mathieu Escouteloup
+Email: mathieu.escouteloup@ims-bordeaux.com
+-----
+License: See LICENSE.md
+Copyright (c) 2024 HerdWare
+-----
+Description: 
+-->
+
+{{- $_hugo_config := `{ "version": 1 }` }}
+{{- partial "shortcodes/notice.html" (dict
+  "page"    .Page
+  "color"   "#0e6a45"
+  "content" .Inner
+  "icon"    (.Get "icon" | default (.Get 2))
+  "style"   (.Get "style" | default (.Get 0))
+  "title"   "HerdWare"
+) }}

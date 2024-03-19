@@ -1,0 +1,17 @@
+<!--
+File: gls-cite.html
+Created Date: 2023-02-18 02:23:51 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-03-06 11:34:24 am
+Modified By: Mathieu Escouteloup
+-----
+License: See LICENSE.md
+Copyright (c) 2023 HerdWare
+-----
+Description: 
+-->
+{{- $lang := (.Page.Params.lang) -}}
+{{- $acr := (.Get "acr") -}}
+
+<a href="{{- add "/" ($lang) "/gls/#" ($acr) -}}">{{- $acr -}}</a>

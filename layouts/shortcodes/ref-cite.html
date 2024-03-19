@@ -1,0 +1,32 @@
+<!--
+File: ref-cite.html
+Created Date: 2023-02-18 02:23:51 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-02-26 06:42:22 pm
+Modified By: Mathieu Escouteloup
+-----
+License: See LICENSE.md
+Copyright (c) 2023 HerdWare
+-----
+Description: 
+-->
+{{- $lang := (.Page.Params.lang) -}}
+{{- $tab := split (.Get "key") "," -}}
+{{- range $index, $key := $tab -}}
+  {{- if not (in ($.Page.Scratch.Get "ref-list") $key) -}}
+    {{- $.Page.Scratch.Add "ref-cnt" 1 -}}
+    {{- $.Page.Scratch.Add "ref-list" $key -}}
+    {{- $.Page.Scratch.Add "ref-list" "," -}}
+  {{- end -}}
+{{- end -}}
+[{{- range $index, $key := $tab -}}
+  {{- if $.Page.Params.localref -}}
+  <a href="{{- add "#" ($key) -}}">{{ $key }}</a>
+  {{- else -}}
+  <a href="{{- add "/" ($lang) "/refs/index.html#" ($key) -}}">{{- $key -}}</a>
+  {{- end -}}
+  {{- if ne (add $index 1) (len $tab) -}}
+  , 
+  {{- end -}}
+{{- end -}}]

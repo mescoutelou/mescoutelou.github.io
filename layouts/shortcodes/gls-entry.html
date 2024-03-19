@@ -1,0 +1,47 @@
+<!--
+File: gls-entry.html
+Created Date: 2023-02-18 02:23:51 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-03-06 11:47:24 am
+Modified By: Mathieu Escouteloup
+-----
+License: See LICENSE.md
+Copyright (c) 2023 HerdWare
+-----
+Description: 
+-->
+
+
+<div class="gls-acr" id="{{ .Get "acr" }}" style="font-weight: bold; display:inline-block">{{ .Get "acr" }}:</div>
+<div class="gls-full" style="font-style: italic; display:inline-block">{{ .Get "full" }}</div>
+</br>
+
+{{ if eq .Page.Params.lang "fr"}}
+  {{ if eq .Page.Params.lang "fr" }}
+    {{ if or (.Get "fr") }}
+      <span style="text-decoration: underline; display:inline-block">Traduction (français): </span> {{ .Get "fr"}}
+    {{ else if or (.Get "en") }}
+      <span style="text-decoration: underline; display:inline-block">Traduction (anglais): </span> {{ .Get "en"}}
+    {{ end }}
+  {{ end }}
+{{ end }}
+<br/>
+
+{{ if or (.Get "definition") }}
+  <div class="gls-def" style="text-align: justify;">
+    <summary class="gls-def" style="text-decoration: underline; display:inline-block">
+      {{ if eq .Page.Params.lang "fr"}}
+        Définition:
+      {{ else }}
+        Definition:
+      {{ end }}
+    </summary>
+    {{ .Get "definition" | markdownify}}
+  </div>
+{{ end }}
+{{ if or (.Get "also") }}
+  <span class="gls-also" style="text-decoration: underline;">{{ if eq .Page.Params.lang "fr"}}Voir aussi:{{ else }}See also:{{ end }}</span>
+  {{ .Get "also" | markdownify }}
+  <br/>
+{{ end }}

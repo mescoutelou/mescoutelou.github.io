@@ -8,7 +8,7 @@ tags:
 - "ISA"
 - "RISC-V"
 weight: 2
-draft: true
+draft: True
 ---
 
 ## Table of Contents

@@ -1,0 +1,43 @@
+<!--
+File: fig.html
+Created Date: 2023-02-18 02:23:51 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-02-28 04:53:52 pm
+Modified By: Mathieu Escouteloup
+-----
+License: See LICENSE.md
+Copyright (c) 2023 HerdWare
+-----
+Description: 
+-->
+
+{{- if ne (.Get "caption") "" -}}
+  {{- if or (.Page.Scratch.Get "cnt-fig") -}}
+    {{- .Page.Scratch.Add "cnt-fig" 1 -}}
+  {{- else -}}
+    {{- .Page.Scratch.Set "cnt-fig" 1 -}}
+  {{- end -}}
+  {{- .Page.Scratch.Set (print "key-fig-" (.Get "key")) (.Page.Scratch.Get "cnt-fig") -}}
+{{- end -}}
+
+<figure id="{{ print "key-fig-" (.Get "key") }}">
+  <img 
+    src="{{ .Get "fig" }}"
+    alt="{{ .Get "alt" }}"
+    style="width: {{ .Get "width" }}"
+  >
+  {{- if ne (.Get "caption") "" -}}
+    </br>
+    <div class="caption" style="text-align: center;">  
+      <span class="caption-main" style="font-weight: bold;">
+        Figure {{ .Page.Scratch.Get "cnt-fig" }}: {{ .Get "caption"  | markdownify }}
+      </span>
+      {{- if or (.Get "subcaption") -}}
+        <span class="caption-main">  
+          {{ .Get "subcaption" | markdownify }}
+        </span>
+      {{- end -}}
+    </div>
+  {{- end -}}
+</figure>

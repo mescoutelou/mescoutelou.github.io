@@ -1,0 +1,23 @@
+<!--
+File: column.html
+Created Date: 2023-08-23 04:19:36 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-02-16 04:37:15 pm
+Modified By: Mathieu Escouteloup
+-----
+License: See LICENSE.md
+Copyright (c) 2023 HerdWare
+-----
+Description: 
+-->
+
+<!--
+<div style="column-count: {{ .Get "ncol"}}">
+  {{ .Inner | markdownify }}
+</div>
+-->
+
+<div class="column" style="height: {{ .Get "height"}}; display: inline-block;">
+  {{ .Inner | markdownify }}
+</div>

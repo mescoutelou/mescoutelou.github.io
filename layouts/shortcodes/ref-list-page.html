@@ -1,0 +1,72 @@
+<!--
+File: ref-list-page.html
+Created Date: 2023-02-25 02:49:30 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-02-26 08:03:11 pm
+Modified By: Mathieu Escouteloup
+-----
+License: See LICENSE.md
+Copyright (c) 2023 HerdWare
+-----
+Description: 
+-->
+
+<!--{{ $bib := (index .Site.Data.bib .Page.Params.lang) }}-->
+{{ $bib := .Site.Data.bib }}
+
+<!--
+{{ range $cat := $bib }}
+  {{ range $cle, $valeur := $cat }}
+    {{ $cle }} - {{ $valeur.title }} - {{ $valeur.author }}
+  {{ end }}
+{{ end }}
+-->
+
+{{ $reflist := (split (.Page.Scratch.Get "ref-list") ",") }}
+{{- range $key := sort $reflist }}
+  {{ range $cat := $bib }}
+    {{ if isset $cat $key}}
+      {{ $entry := index $cat $key }}
+      <div id={{ $key }} class="ref">
+        <div class="ref-key" style="font-weight: bold">[{{ $key }}]:</div>
+        <div class="ref-content">
+          <div class="bib-title" style="text-align: justify; font-style: italic;">
+            {{ $entry.title }}
+            {{ if isset $entry "subtitle" }}
+              , {{ $entry.subtitle }}
+            {{ end }}
+          </div>
+          <div class="bib-author" style="text-align: justify; display: block;">{{ $entry.author }}</div>
+    
+          {{ if isset $entry "book" }}
+          <span class="bib-book" style="font-weight: bold">{{ $entry.book }}</span>{{ if isset $entry "date" }}, {{ $entry.date }}{{ end }}<br/>
+          {{ else }}
+            {{ if isset $entry "date" }}
+              {{ $entry.date }}<br/>
+            {{ end }}
+          {{ end }}
+    
+        {{ if isset $entry "link" }}
+          <a class="link-button" href="{{ $entry.link }}" style="display:inline-block">
+            {{ if eq $.Page.Params.lang "fr" }}
+              Lien
+            {{ else }}
+              Link
+            {{ end }}
+          </a>
+        {{ end }}
+    
+        {{ if isset $entry "note" }}
+          <details>
+            <summary class="bib-note" style="text-decoration: underline; display:inline-block">Notes:</summary>
+            {{ $entry.note }}
+          </details>
+        {{ end }}
+        </div>
+      </div>
+      </br>
+    {{ end }}
+  {{ end }}
+{{ end }}
+

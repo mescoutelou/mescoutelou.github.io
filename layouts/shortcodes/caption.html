@@ -1,0 +1,62 @@
+<!--
+File: caption.html
+Created Date: 2023-02-18 02:23:51 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-02-23 10:54:17 am
+Modified By: Mathieu Escouteloup
+-----
+License: See LICENSE.md
+Copyright (c) 2023 HerdWare
+-----
+Description: 
+-->
+
+<!--Caption number-->
+{{ if eq (.Get "type") "Figure"}}
+  {{ if or (.Page.Scratch.Get "cnt-fig") }}
+    {{ .Page.Scratch.Add "cnt-fig" 1 }}
+  {{ else }}
+    {{ .Page.Scratch.Set "cnt-fig" 1}}
+  {{ end }}
+  {{ .Page.Scratch.Set "num-cnt" (.Page.Scratch.Get "cnt-fig") }}
+  {{ .Page.Scratch.Set "num-key" (print "key-fig-" (.Get "key")) }}
+  {{ .Page.Scratch.Set (print "key-fig-" (.Get "key")) (.Page.Scratch.Get "num-cnt") }}
+{{ else if eq (.Get "type") "Code"}}
+  {{ if or (.Page.Scratch.Get "cnt-code") }}
+    {{ .Page.Scratch.Set "cnt-code" (add (.Page.Scratch.Get "cnt-code") 1)}}
+  {{ else }}
+    {{ .Page.Scratch.Set "cnt-code" 1}}
+  {{ end }}
+  {{ .Page.Scratch.Set "num-cnt" (.Page.Scratch.Get "cnt-code") }}
+  {{ .Page.Scratch.Set "num-key" (print "key-code-" (.Get "key")) }}
+  {{ .Page.Scratch.Set (print "key-code-" (.Get "key")) (.Page.Scratch.Get "num-cnt") }}
+{{ else if eq (.Get "type") "Table"}}
+  {{ if or (.Page.Scratch.Get "cnt-tab") }}
+    {{ .Page.Scratch.Set "cnt-tab" (add (.Page.Scratch.Get "cnt-tab") 1)}}
+  {{ else }}
+    {{ .Page.Scratch.Set "cnt-tab" 1}}
+  {{ end }}
+  {{ .Page.Scratch.Set "num-cnt" (.Page.Scratch.Get "cnt-tab") }}
+  {{ .Page.Scratch.Set "num-key" (print "key-tab-" (.Get "key")) }}
+  {{ .Page.Scratch.Set (print "key-tab-" (.Get "key")) (.Page.Scratch.Get "num-cnt") }}
+{{ else }}
+  {{ .Page.Scratch.Set "num-cnt" 0 }}
+{{ end }}
+
+{{ .Page.Scratch.Set "num-type" (.Get "type") }}
+{{ if eq .Page.Params.lang "fr"}}
+  {{ if eq (.Page.Scratch.Get "num-type") "Table"}}
+    {{ .Page.Scratch.Set "num-type" "Tableau" }}
+  {{ end }}
+{{ end }}
+
+<div class="caption" id="{{ .Page.Scratch.Get "num-key" }}" style="text-align: center;">  
+  <span class="caption-main" style="font-weight: bold;">  
+    {{ .Page.Scratch.Get "num-type" }} {{ .Page.Scratch.Get "num-cnt" }}: {{ .Get "main" }}
+  </span>
+  
+  <span class="caption-main" style="">  
+    {{ .Get "sub" | markdownify}}
+  </span>
+</div>

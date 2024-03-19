@@ -1,0 +1,33 @@
+<!--
+File: num.html
+Created Date: 2023-02-18 02:23:51 pm
+Author: Mathieu Escouteloup
+-----
+Last Modified: 2024-02-23 10:57:20 am
+Modified By: Mathieu Escouteloup
+-----
+License: See LICENSE.md
+Copyright (c) 2023 HerdWare
+-----
+Description: 
+-->
+
+{{- if eq (.Get "type") "Figure" -}}
+  {{- .Page.Scratch.Set "num-cnt" (.Page.Scratch.Get (print "key-fig-" (.Get "key"))) -}}
+  {{- .Page.Scratch.Set "num-type" "Figure" -}}
+  {{- .Page.Scratch.Set "num-key" (print "key-fig-" (.Get "key")) -}}
+{{- else if eq (.Get "type") "Code" -}}
+  {{- .Page.Scratch.Set "num-cnt" (.Page.Scratch.Get (print "key-code-" (.Get "key"))) -}}
+  {{- .Page.Scratch.Set "num-type" "Code" -}}
+  {{- .Page.Scratch.Set "num-key" (print "key-code-" (.Get "key")) -}}
+{{- else if eq (.Get "type") "Table" -}}
+  {{- .Page.Scratch.Set "num-cnt" (.Page.Scratch.Get (print "key-tab-" (.Get "key"))) -}}
+  {{- .Page.Scratch.Set "num-key" (print "key-tab-" (.Get "key")) -}}
+  {{- if eq .Page.Params.lang "fr" -}}
+    {{- .Page.Scratch.Set "num-type" "Tableau" -}}
+  {{- else -}}
+    {{- .Page.Scratch.Set "num-type" "Table" -}}
+  {{- end -}}
+{{- end -}}
+
+<a href="{{ add "#" (.Page.Scratch.Get "num-key") }}" class="highlight">{{ .Page.Scratch.Get "num-type" }} {{ .Page.Scratch.Get "num-cnt" }}</a>

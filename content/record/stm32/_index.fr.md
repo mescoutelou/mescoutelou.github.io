@@ -19,13 +19,13 @@ Cette fiche vise à présenter une première utilisation du logiciel STM32CubeID
 En la suivant pas-à-pas, un développeur logiciel doit être capable:
 - de créer un projet,
 - de savoir où ajouter son programme (simple) en langage C,
-- de connaître quelles informations sont mises à disposition par l'outil pour le débogage et comprende à quoi elles servent.
+- de connaître quelles informations sont mises à disposition par l'outil pour le débogage et comprendre à quoi elles servent.
 {{% /notice %}}
 
-{{% notice style="warning" title="Attention" %}}
-Cette fiche utilise la version v1.12.0 du logiciel [***STM32CubeIDE***](https://www.st.com/en/development-tools/stm32cubeide.html#st_description_sec-nav-tab).
+{{% notice style="warning" title="Version des outils" %}}
+Cette fiche utilise la version ***v1.12.0*** du logiciel [***STM32CubeIDE***](https://www.st.com/en/development-tools/stm32cubeide.html#st_description_sec-nav-tab).
 Certaines variations au niveau des captures d'écrans peuvent apparaître si vous utilisez des versions différentes.
-De même, la carte utilisée est la Nucleo-F446RE.
+De même, la carte utilisée est la ***Nucleo-F446RE***.
 {{% /notice %}}
 
 ## Sommaire
@@ -36,12 +36,11 @@ De même, la carte utilisée est la Nucleo-F446RE.
   - [Lancement](#lancement)
   - [Fenêtres](#fenêtres)
   - [Exécution](#exécution)
-- [Exemples de programmes](#exemples-de-programmes)
+- [Exercices](#exercices)
+  - [Utilisation d'une variable](#utilisation-dune-variable)
+  - [Utilisation d'une fonction](#utilisation-dune-fonction)
 - [Références](#références)
-
-Lors du premiere démarrage, demande le répertoire pour l'espace de travail.
-Correspond à l'endroit où l'IDE installera les différents projets: choisir un réprtoire avec des droits d'accès
-
+  
 ## Créer un projet
 
 {{< tabs title="Création d'un projet:" >}}
@@ -56,7 +55,7 @@ Correspond à l'endroit où l'IDE installera les différents projets: choisir un
 
 Tout d'abord, lancez STM32CubeIDE.
 Au démarrage, le logiciel vous demandera (si vous ne l'avez jamais utilisé) où est situé l'espace de travail.
-Cela correspond à l'endroit pù seront placés vos futurs projets.
+Cela correspond à l'endroit où seront placés vos futurs projets.
 Choisissez donc un répertoire qui vous appartient et où vous pourrez récupérer facilement vos données.
 Si vous souhaitez ne plus voir cette fenêtre à chaque démarrage de STM32CubeIDE, vous pouvez cocher la case correspondante.
 {{% /tab %}}
@@ -72,6 +71,7 @@ Si vous souhaitez ne plus voir cette fenêtre à chaque démarrage de STM32CubeI
 
 Lors de la première ouverture, aucun projet n'existe.
 Pour en créer un, cliquez sur l'icône correspondant.
+Vous pouvez aussi aller dans **File -> New -> STM32 Project**.
 {{% /tab %}}
 
 {{% tab title="Étape 2" %}}
@@ -100,7 +100,7 @@ Cliquez ensuite sur le bouton ***Next>***.
   subcaption=""
 >}}
 
-Donnez un nom au projet que vous souhaiter créer.
+Donnez un nom au projet que vous souhaitez créer.
 Laissez les autres valeurs par défaut et cliquez sur ***Next>***.
 Deux fenêtres vont s'ouvrir, cliquez à chaque fois sur *Yes*.
 
@@ -115,9 +115,9 @@ Deux fenêtres vont s'ouvrir, cliquez à chaque fois sur *Yes*.
   subcaption=""
 >}}
 
-Une fois différentes données locales téléchargées, vous arrivez alors sur le fenêtre suivante.
+Une fois différentes données locales téléchargées, vous arrivez alors sur la fenêtre suivante.
 Le projet a donc été créé.
-Vou retrouvez sur la gauche la hiérarchie des fichiers du projet et au centre une animation présentant la configuration de votre système.
+Vous retrouvez sur la gauche la hiérarchie des fichiers du projet et au centre une animation présentant la configuration de votre système.
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -133,7 +133,7 @@ Pour créer un projet sur STM32CubeIDE, différentes étapes sont nécessaires.
 Elles sont résumées ici sur la {{< num type="Figure" key="new-project" >}}.
 
 {{% notice style="warning" title="Attention" %}}
-Par défaut, laissez les paramètres proposés par défaut lorsque des fenêtres s'ouvrent.
+Par défaut, laissez les paramètres proposés lorsque des fenêtres s'ouvrent.
 {{% /notice %}}
 
 ## Ajouter du code
@@ -194,7 +194,7 @@ int main(void)
 ```
 
 Lors de la création du fichier, l'IDE pré-complète et organise la fonction `main`.
-Ainsi, en plus de fonctions d'initialisation du système, il ajouter également des commentaires vous indiquants où placer le code utilisateur (`USER CODE`).
+Ainsi, en plus de fonctions d'initialisation du système, il ajoute également des commentaires vous indiquant où placer le code utilisateur (`USER CODE`).
 Pour développer une application, la partie essentielle de la fonction `main` est la boucle `while(1)`.
 Étant infinie, elle permet de garantir que l'exécution restera bloquée à l'intérieur.
 Ainsi, une fois l'initialisation terminée, c'est à l'intérieur de cette boucle que l'on viendra ajouter les opérations que l'on souhaitera effectuer aussi longtemps que le microcontrôleur fonctionnera.
@@ -218,7 +218,7 @@ int main(void) {
 ```
 
 La partie `USER CODE 2` étant avant la boucle, alors celle-ci ne s'exécutera qu'une seule fois.
-En revanche, la partie `USER CODE 3` étant dans la boucle, alors elle sera exécuter aussi longtemps que le système restera en marche.
+En revanche, la partie `USER CODE 3` étant dans la boucle, alors elle sera exécutée aussi longtemps que le système restera en marche.
 Dans notre cas, on souhaite créer la variable `count` une seule fois au départ: on la place donc dans `USER CODE 2`.
 Par la suite, on souhaite l'incrémenter tout le long du fonctionnement donc on place le code correspondant dans `USER CODE 3`.
 
@@ -228,7 +228,7 @@ C'est ce qui est fait lorsque l'on souhaite qu'un système réalise une mission 
 ## Debug
 
 Une fois le code modifié, il est nécessaire de s'assurer qu'il réalise la fonctionnalité voulue.
-Il est donc nécessaire de passer par une phase de *debug* (ou débogage), où le code est directement exécuté.
+Il faut donc passer par une phase de *debug* (ou débogage), où le code est directement exécuté.
 STM32CubeIDE met pour cela à disposition une interface dédiée.
 
 {{% notice style="warning" title="Attention" %}}
@@ -309,9 +309,37 @@ Nous verrons certains d'entre eux lors de l'utilisation des périphériques.
   subcaption=""
 >}}
 
-Cette fenêtre présente code assembleur correspondant au code C compilé.
+Cette fenêtre présente le code assembleur correspondant au code C compilé.
 C'est ce qu'on appelle le *désassemblé*.
 Pour activer cette fenêtre, cliquez sur **Window -> Show View -> Disassembly**.
+{{% /tab %}}
+
+{{% tab title="*Memory browser*" %}}
+{{< fig
+  fig="/fig/record/stm32/stm32cubeide_memory_browser.png"
+  alt=""
+  width=700px
+  caption=""
+  subcaption=""
+>}}
+
+Cette fenêtre présente un navigateur pour la mémoire.
+En tapant le nom d'une variable, il est possible de visualiser sa valeur drectement en mémoire.
+Pour activer cette fenêtre, cliquez sur **Window -> Show View -> Memory Browser**.
+{{% /tab %}}
+
+{{% tab title="*Build Analyzer*" %}}
+{{< fig
+  fig="/fig/record/stm32/stm32cubeide_build_analyzer.png"
+  alt=""
+  width=700px
+  caption=""
+  subcaption=""
+>}}
+
+Cette fenêtre présente la répartition du programme en mémoire.
+Il est possible de découvrir où sont situées chaque variable, fonction *etc.*
+Pour activer cette fenêtre, cliquez sur **Window -> Show View -> Build Analyzer**.
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -364,17 +392,15 @@ Un breakpoint est une directive indiquant au système d'interrompre l'exécution
 En débogage, il est possible d'introduire des breakpoints en cliquant dans la zone bleue sur la gauche du code, comme sur la {{< num type="Figure" key="exec-breakpoints" >}}.
 Ici, deux points d'arrêts sont placés lignes 92 et 100: à chaque fois que l'exécution arrivera à l'une de ces lignes, elle sera interrompue et devra être relancée manuellement.
 
-{{% notice style="orange" title="Exercice" icon="bolt"%}}
-## Exemples de programmes
+On notera que des points d'arrêts peuvent également être placés directement dans le programme désassemblé.
+Cela peut dans certains cas permettre une granularité plus fine, en analysant l'évolution du programme instruction par instruction.
 
-Recopiez et analysez l'exécution des programmes ci-dessous.
-Pour chacun d'entre eux, essayez de retrouver pour votre code C:
-- le code désassemblé correspondant,
-- le rôle de chacune des instructions du code désassemblé,
-- l'impact du code sur les registres internes du processeur.
+## Exercices
 
-{{< tabs title="Programmes:" >}}
-{{% tab title="Incrément" %}}
+### Utilisation d'une variable
+
+On propose d'étudier l'évolution d'une variable.
+Pour cela, reprenez le code suivant:
 ```c
 int main(void) {
   /* USER CODE BEGIN 2 */
@@ -391,11 +417,42 @@ int main(void) {
   /* USER CODE END 3 */
 }
 ```
-{{% /tab %}}
 
-{{% tab title="Fonction" %}}
+{{% notice style="orange" title="Question 1" icon="bolt"%}}
+Analysez l'exécution du programme ci-dessus.
+Essayez de retrouver:
+- le code désassemblé correspondant à la création de la variable,
+- le code désassemblé correspondant à l'incrémentation de la variable,
+- le rôle de chacune des instructions de ces blocs de code désassemblé,
+- l'impact de ces blocs de code sur les registres internes du processeur.
+{{% /notice %}}
+
+{{% notice style="orange" title="Question 2" icon="bolt"%}}
+Ajoutez des points d'arrêts dans le code désassemblé au niveau des instructions effectuant l'incrément de la variable.
+Avancez l'exécution instruction par instruction.
+À chaque fois, visualisez la modification des registres internes et de la variable en mémoire.
+Les deux sont-elles effectuées en même temps ? 
+Quelles instructions sont responsables de cela ?
+{{% /notice %}}
+
+{{% notice style="orange" title="Question 3" icon="bolt"%}}
+Déplacez votre variable `count` comme une variable globale située juste avant le main.
+Exécutez le programme jusqu'à ce que la variable ait été incrémentée.
+Dans la fenêtre ***Build Analyzer***, retrouvez où est placée la variable.
+Pourquoi est-elle placée dans cette mémoire ?
+{{% /notice %}}
+
+{{% notice style="orange" title="Question 4" icon="bolt"%}}
+De la même manière, retrouvez la mémoire où est située la fonction `main`.
+Pourquoi est-elle placée dans cette mémoire ?
+{{% /notice %}}
+
+### Utilisation d'une fonction
+
+On propose d'étudier l'utilisation d'une fonction.
+Pour cela, reprenez le code suivant:
+
 ```c
-
 uint32_t add32 (uint32_t a, uint32_t b) {
   return a + b;
 }
@@ -415,8 +472,19 @@ int main(void) {
   /* USER CODE END 3 */
 }
 ```
-{{% /tab %}}
-{{< /tabs >}}
+
+{{% notice style="orange" title="Question 1" icon="bolt"%}}
+Retrouvez dans la mémoire où est située la fonction `add32`.
+Pourquoi est-elle placée dans cette mémoire ?
+{{% /notice %}}
+
+{{% notice style="orange" title="Question 2" icon="bolt"%}}
+À partir des valeurs des registres, analysez comment évolue le PC au cours de l'exécution.
+{{% /notice %}}
+
+{{% notice style="orange" title="Question 3" icon="bolt"%}}
+Analysez le désassemblé de l'appel de la fonction, de la fonction elle-même et du retour.
+Quelles instructions sont responsables du saut/ retour de fonction ?
 {{% /notice %}}
 
 ## Références

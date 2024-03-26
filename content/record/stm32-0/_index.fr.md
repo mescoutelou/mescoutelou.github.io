@@ -1,14 +1,14 @@
 ---
 archetype: "page"
 lang: "fr"
-title: "Programmation de microcontrôleur STM32 avec STM32CubeIDE"
-linktitle: "STM32CubeIDE"
+title: "Programmation sur STM32: Utilisation de STM32CubeIDE"
+linktitle: "STM32: STM32CubeIDE"
 categories:
 - "Fiches"
 tags: 
-- "ISA"
-- "Processeur"
-- "RISC-V"
+- "Arm"
+- "Langage C"
+- "Microcontrôleur"
 weight: 10
 localref: True
 draft: False
@@ -58,6 +58,10 @@ Au démarrage, le logiciel vous demandera (si vous ne l'avez jamais utilisé) o�
 Cela correspond à l'endroit où seront placés vos futurs projets.
 Choisissez donc un répertoire qui vous appartient et où vous pourrez récupérer facilement vos données.
 Si vous souhaitez ne plus voir cette fenêtre à chaque démarrage de STM32CubeIDE, vous pouvez cocher la case correspondante.
+
+{{% notice style="warning" title="Nom des répertoires et projets" %}}
+Pour éviter tout problème, veillez à n'utiliser que des caractères alphanumérique et des underscores (_) pour le nom des répertoires et projets.
+{{% /notice %}}
 {{% /tab %}}
 
 {{% tab title="Étape 1" %}}

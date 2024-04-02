@@ -46,7 +46,7 @@ Comme précédemment, configurez la pin du bouton poussoir (pin 13 du GPIOC) dan
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 2.2" icon="bolt" %}}
-Pour déclencher une interruption depuis un GPIO, il est nécessaire d'activer son utilisant dans le NVIC (*Nested Vectored Interrupt Controller*).
+Pour déclencher une interruption depuis un GPIO, il est nécessaire d'activer son utilisation dans le NVIC (*Nested Vectored Interrupt Controller*).
 Grâce au register `ISER` du NVIC, activez l'interruption correspondant à la ligne EXTI susceptible de recevoir un changement d'état du bouton-poussoir.
 {{% expand title="Aide supplémentaire ..." %}}
 Chaque ligne EXTI*x* est susceptible de détecter un évènement sur la pin *x* d'un des ports.
@@ -57,7 +57,7 @@ Ainsi, pour la ligne à activer pour le bouton poussoir est celle correspondants
 {{% notice style="orange" title="Question 2.3" icon="bolt" %}}
 De base, le signal d'horloge pour certains modules du système est désactivé.
 Pour les interruptions depuis un GPIO, il est nécessaire de réactiver le signal d'horloge pour `SYSCFG`.
-Pour cela, ajoutez la ligne de code suivant:
+Pour cela, ajoutez la ligne de code suivante:
 ```c
 RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 ```
@@ -74,9 +74,9 @@ Modifiez le registre `IMR` de EXTI en mettant le bit pour EXTI13 dans l'état co
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 2.6" icon="bolt" %}}
-Une interruption peut aussi être déclenchée pour différents types d'évènements, aussi bien sur un front montant qu'un front descendant.
+Une interruption peut être déclenchée pour différents types d'évènements, aussi bien sur un front montant qu'un front descendant.
 Pour cela, deux registres `RTSR` et `FTSR` sont mis à disposition, respectivement pour activer/désactiver un déclenchement sur front montant ou descendant.
-Configurez ces deux registres pour ne lancer une interruption que sur front montant.
+Configurez ces deux registres pour ne lancer une interruption que lorsque le bouton est pressé.
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 2.7" icon="bolt" %}}

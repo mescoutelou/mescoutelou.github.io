@@ -101,7 +101,7 @@ Que se passe-t-il ? Le fonctionnement est-il correct ?
 
 {{% notice style="orange" title="Question 1.9" icon="bolt" %}}
 Lorsqu'une interruption a été traitée, il est nécessaire de la remettre à 0.
-Pour cela, réinitialisez le bit correspondant dans le registre `PR` de EXTI.
+Pour cela, utilisez le bit correspondant dans le registre `PR` de EXTI.
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 1.10" icon="bolt" %}}

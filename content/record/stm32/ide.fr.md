@@ -1,15 +1,15 @@
 ---
 archetype: "page"
 lang: "fr"
-title: "Programmation sur STM32: Utilisation de STM32CubeIDE"
-linktitle: "STM32: STM32CubeIDE"
+title: "Développement sous STM32CubeIDE"
+linktitle: "STM32CubeIDE"
 categories:
 - "Fiches"
 tags: 
 - "Arm"
 - "Langage C"
 - "Microcontrôleur"
-weight: 10
+weight: 1
 localref: True
 draft: False
 ---

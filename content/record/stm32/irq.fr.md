@@ -1,15 +1,15 @@
 ---
 archetype: "page"
 lang: "fr"
-title: "Programmation sur STM32: Interruptions"
-linktitle: "STM32: Interruptions"
+title: "Requête d'interruptions"
+linktitle: "Interruptions"
 categories:
 - "Fiches"
 tags: 
 - "Arm"
 - "Langage C"
 - "Microcontrôleur"
-weight: 12
+weight: 3
 localref: True
 draft: False
 ---
@@ -37,7 +37,7 @@ De même, la carte utilisée est la ***Nucleo-F446RE***.
   
 ## Détection d'un bouton poussoir
 
-[Précédemment](/record/stm32-1), nous avons utilisé un bouton poussoir pour déclencher l'allumage d'une LED.
+[Précédemment](gpio/), nous avons utilisé un bouton poussoir pour déclencher l'allumage d'une LED.
 La détection de l'état du bouton était alors faite de manière scrutative: le programme vérifiait régulièrement l'état du registre correspondant.
 À présent, on propose d'utiliser un mécanisme d'interruptions pour déclencher l'allumage de la LED.
 

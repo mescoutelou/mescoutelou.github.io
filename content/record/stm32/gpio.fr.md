@@ -1,15 +1,15 @@
 ---
 archetype: "page"
 lang: "fr"
-title: "Programmation sur STM32: GPIO"
-linktitle: "STM32: GPIO"
+title: "Les entrées/sorties GPIO"
+linktitle: "GPIO"
 categories:
 - "Fiches"
 tags: 
 - "Arm"
 - "Langage C"
 - "Microcontrôleur"
-weight: 11
+weight: 2
 localref: True
 draft: False
 ---

@@ -105,6 +105,10 @@ Chacun des regitres étant sur 16 bits, il va falloir diviser la fréquence de l
 {{% /expand %}}
 {{% /notice %}}
 
+{{% notice style="warning" title="Mise à jour des registres" icon="bolt" %}}
+Au départ, il est conseillé dans l'ordre du programme de modifier `TIM2_PSC` et `TIM2_ARR` avant d'activer le buffer avec le bit `ARPE`.
+{{% /notice %}}
+
 {{% notice style="orange" title="Question 1.5" icon="bolt" %}}
 Le timer TIM2 est associé à l'interruption numéro 28.
 De la même manière que sur les [exercices précédents](irq/), activez la gestion de cette interruption.
@@ -124,7 +128,8 @@ Dans votre fonction `main` à présent, ajoutez le code pour initialiser l'état
 
 {{% notice style="orange" title="Question 1.8" icon="bolt" %}}
 La configuration du timer est à présent terminée.
-Activez le compteur en mettant le bit correspondant du registre `CR1` à 1 puis vérifiez le bon fonctionnement de votre système.
+Juste avant d'activer le compteur, réinitialisez la valeur du compteur `CNT` à la valeur 0
+Vérifiez ensuite le bon fonctionnement de votre système.
 {{% expand title="Aide supplémentaire ..." %}}
 En cas d'erreur, utilisez le mode debug de l'IDE pour visualiser l'état des registres du TIM2.
 Assurez-vous dans l'ordre:
@@ -196,13 +201,13 @@ Ainsi, toujours dans le registre `TIM2_DIER`, désactivez l'interruption pour le
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 2.5" icon="bolt" %}}
-A l'aide d'un schéma, représentez l'allure attendue du signal de sortie contrôlant la LED.
+A l'aide d'un schéma, représentez l'allure attendue du signal de sortie contrôlant la LED en fonction des valeurs de `CNT`, `PSC`, `ARR` et `CCR1`.
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 2.6" icon="bolt" %}}
 Pour notre application finale, nous aurons besoin de trois fonctions:
 1. `TIM2_Init` qui configure et initialise l'état du timer TIM2 au départ,
-1. `TIM3_Start` qui lance le fonctionnement du compteur,
+1. `TIM2_Start` qui lance le fonctionnement du compteur,
 3. `TIM2_Frequency` qui prend en paramètre une distance en cm et fait clignoter la LED plus ou moins rapidement selon la valeur reçue. Pour information, la distance calculée mesurée peut aller de 2.5cm à 425cm. En-dessous de cet intervalle, on laissera la LED constamment allumé (ou clignotement très rapide). Au-dessus de cet intervalle, on laisse la LED constamment éteinte (ou clignotement très lent).
 
 Préparez ces trois fonctions pour la suite du projet.
@@ -355,7 +360,6 @@ Plusieurs optimisations sont imaginables au niveau du code conçu jusqu'à maint
 
 Proposez et/ou testez une ou plusieurs de ces possibles optimisations.
 {{% /notice %}}
-
 
 ## Références
 

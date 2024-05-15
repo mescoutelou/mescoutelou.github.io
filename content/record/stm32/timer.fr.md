@@ -356,6 +356,7 @@ Plusieurs optimisations sont imaginables au niveau du code conçu jusqu'à maint
 Proposez et/ou testez une ou plusieurs de ces possibles optimisations.
 {{% /notice %}}
 
+
 ## Références
 
 Cette partie regroupe les informations sur les {{< ref-cnt-page >}} références utilisées sur cette page.

@@ -39,6 +39,7 @@ De même, la carte utilisée est la ***Nucleo-F446RE***.
     - [Canaux 3/4: réception du signal `Echo`](#canaux-34-réception-du-signal-echo)
     - [Montage et test](#montage-et-test)
   - [Conception d'une application](#conception-dune-application)
+- [Communication avec une télécommande infrarouge](#communication-avec-une-télécommande-infrarouge)
 - [Références](#références)
 
 
@@ -178,6 +179,7 @@ La mise en place de cette application se décomposera en trois parties:
 Dans l'exercice ci-dessus, le clignotement s'effectue avec l'intervention d'une interruption.
 Cependant, le timer `TIM2` contient tous les éléments pour effectuer ce clignotement de manière autonome, sans intervention du logiciel après configuration.
 Dans cette partie, on se propose donc de le reconfigurer pour contrôler la sortie à l'aide du canal 1.
+Pour cela, nous allons utiliser le principe de PWM (*Pulse Width Modulation*) des timers.
 
 {{% notice style="orange" title="Question 2.1" icon="bolt" %}}
 Reprenez la configuration du `TIM2` effectuée précédemment.
@@ -201,14 +203,19 @@ Ainsi, toujours dans le registre `TIM2_DIER`, désactivez l'interruption pour le
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 2.5" icon="bolt" %}}
-A l'aide d'un schéma, représentez l'allure attendue du signal de sortie contrôlant la LED en fonction des valeurs de `CNT`, `PSC`, `ARR` et `CCR1`.
+L'activation du signal en sortie et la polarité sont configurées au sein du registre `TIM2_CCER`.
+Modifiez le registre pour activer la sortie sur l'état haut.
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 2.6" icon="bolt" %}}
+A l'aide d'un schéma, représentez l'allure attendue du signal de sortie contrôlant la LED en fonction des valeurs de `CNT`, `PSC`, `ARR` et `CCR1`.
+{{% /notice %}}
+
+{{% notice style="orange" title="Question 2.7" icon="bolt" %}}
 Pour notre application finale, nous aurons besoin de trois fonctions:
 1. `TIM2_Init` qui configure et initialise l'état du timer TIM2 au départ,
-1. `TIM2_Start` qui lance le fonctionnement du compteur,
-3. `TIM2_Frequency` qui prend en paramètre une distance en cm et fait clignoter la LED plus ou moins rapidement selon la valeur reçue. Pour information, la distance calculée mesurée peut aller de 2.5cm à 425cm. En-dessous de cet intervalle, on laissera la LED constamment allumé (ou clignotement très rapide). Au-dessus de cet intervalle, on laisse la LED constamment éteinte (ou clignotement très lent).
+2. `TIM2_Start` qui lance le fonctionnement du compteur,
+3. `TIM2_Frequency` qui prend en paramètre une distance en cm et fait clignoter la LED plus ou moins rapidement selon la valeur reçue. Pour information, la distance calculée mesurée peut aller de 2.5cm à 425cm. En-dessous de cet intervalle, on laissera la LED constamment allumé (ou clignotement très rapide). Au-dessus de cet intervalle, on laisse la LED constamment éteinte (ou clignotement très lent). Une stratégie envisageable est simplement de modifier la valeur du registre `CCR1` selon la distance et ainsi faire varier le rapport cyclique.
 
 Préparez ces trois fonctions pour la suite du projet.
 Testez ensuite leur bon fonctionnement.
@@ -246,11 +253,12 @@ Configurez les registres `PSC` et `ARR` en conséquences.
 
 Pour qu'une mesure soit effectuée, une demande doit avoir été faite sur le signal `Trig`.
 Ainsi, détecter dès que possible un obstacle implique d'effectuer de manière régulière des mesures.
-Pour cela, nous allons utiliser le principe de PWM (*Pulse Width Modulation*) des timers.
+Pour cela, nous allons à nouveau utiliser le principe de PWM (*Pulse Width Modulation*) des timers.
+La configuration attendue sera  finalement en grande partie similaire à celle pour la LED: seuls la période et le rapport cyclique seront différents.
 
 {{% notice style="orange" title="Question 3.4" icon="bolt" %}}
 Pour utiliser l'entrée `Trig` du capteur comme sortie de notre timer, il est nécessaire de la rediriger par le biais des fonctions alternatives des GPIO.
-À partir des spécifications de la carte Nucleo et du microcontrôleur, déduisez quels pins peuvent être utilisées pour relier `Trig` à la sortie du canal 1 du timer TIM3.
+À partir des spécifications de la carte Nucleo et du microcontrôleur, déduisez quelles pins peuvent être utilisées pour relier `Trig` à la sortie du canal 1 du timer TIM3.
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 3.5" icon="bolt" %}}
@@ -268,6 +276,11 @@ Ainsi, toujours dans le registre `TIM3_DIER`, désactivez l'interruption pour le
 {{% /notice %}}
 
 {{% notice style="orange" title="Question 3.8" icon="bolt" %}}
+L'activation du signal en sortie et la polarité sont configurées au sein du registre `TIM3_CCER`.
+Modifiez le registre pour activer la sortie sur l'état haut.
+{{% /notice %}}
+
+{{% notice style="orange" title="Question 3.9" icon="bolt" %}}
 A l'aide d'un schéma, représentez l'allure attendue du signal de sortie `Trig`.
 En considérant les valeurs précédemment choisies d'`ARR` et `PSC`, à quelle valeur le signal `Trig` doit être mis à 0 / à 1.
 Modifiez le registre `TIM3_CCR1` en fonction de la valeur voulue.
@@ -275,47 +288,47 @@ Modifiez le registre `TIM3_CCR1` en fonction de la valeur voulue.
 
 #### Canaux 3/4: réception du signal `Echo`
 
-{{% notice style="orange" title="Question 3.9" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.10" icon="bolt" %}}
 Pour utiliser la sortie `Echo` du capteur comme entrée de notre timer, il est nécessaire de la rediriger par le biais des fonctions alternatives des GPIO.
 À partir des spécifications de la carte Nucleo et du microcontrôleur, déduisez quels pins peuvent être utilisées pour relier `Echo` à l'entrée des canaux 3 ou 4 du timer TIM3.
 {{% /notice %}}
 
-{{% notice style="orange" title="Question 3.10" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.11" icon="bolt" %}}
 Selon votre choix, activez le port et la clock du port correspondant et utilisez la fonction alternative nécessaire pour rediriger le signal vers les canaux 3 ou 4 du timer TIM3.
 {{% /notice %}}
 
-{{% notice style="orange" title="Question 3.11" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.12" icon="bolt" %}}
 Le timer TIM3 dispose de 4 canaux.
 Le canal 1 est utilisé pour l'émission du signal `Trig`.
 D'après l'architecture du timer page 521 du manuel d'utilisateur, pourquoi est-il alors nécessaire d'utiliser les canaux 3 et 4 pour faire les détections distinctes des fronts montants et descendants plutôt que les canaux 2 et 3 ?
 Expliquez avec un schéma simplifié.
 {{% /notice %}}
 
-{{% notice style="orange" title="Question 3.12" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.13" icon="bolt" %}}
 La configuration du canal 3 s'effectue au sein du registre `TIM3_CCMR2`.
 Dans notre cas, on souhaite configurer le canal en tant qu'entrée, sans filtre, sans *prescaler* et avec IC3 connecté à TI3 (voir schéma).
 De même, désactivez l'interruption correspondante dans `TIM3_DIER`.
 {{% /notice %}}
 
-{{% notice style="orange" title="Question 3.13" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.14" icon="bolt" %}}
 La capture et la polarité sont configurées au sein du registre `TIM3_CCER`.
-Modifiez le registre pour activez la capture sur front montant  du canal 3.
+Modifiez le registre pour activer la capture sur front montant  du canal 3.
 {{% /notice %}}
 
-{{% notice style="orange" title="Question 3.14" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.15" icon="bolt" %}}
 La configuration du canal 4 s'effectue également au sein du registre `TIM3_CCMR2`.
 Dans notre cas, on souhaite configurer le canal en tant qu'entrée, sans filtre, sans *prescaler* et avec IC4 connecté à TI3 (voir schéma).
 En revanche, la détecton d'un front descendant implique que la mesure est terminée.
 Il est donc nécessaire d'activer l'interruption correspondante dans `TIM3_DIER`.
 {{% /notice %}}
 
-{{% notice style="orange" title="Question 3.15" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.16" icon="bolt" %}}
 La capture et la polarité sont configurées au sein du registre `TIM3_CCER`.
-Modifiez le registre pour activez la capture sur front descendant  du canal 4.
+Modifiez le registre pour activer la capture sur front descendant  du canal 4.
 {{% /notice %}}
 
-{{% notice style="orange" title="Question 3.16" icon="bolt" %}}
-  La routine appelée pour le timer TIM3 s'appelle `TIM2_IRQHandler`.
+{{% notice style="orange" title="Question 3.17" icon="bolt" %}}
+  La routine appelée pour le timer TIM3 s'appelle `TIM3_IRQHandler`.
   Modifiez cette routine pour qu'elle calcule le nombre de cycles écoulés entre les deux fronts et stocke le résultat dans une variable globale.
   Pensez également à réinitialiser l'état du bit d'interruption dans le registre `TIM3_SR`.
 {{% /notice %}}
@@ -325,11 +338,11 @@ Modifiez le registre pour activez la capture sur front descendant  du canal 4.
 Nous avons à présent configué notre timer TIM3 afin qu'il s'interface avec le capteur HC-SR04.
 L'objectif va être de tester le bon fonctionnement du système et de préparer les fonctions pour l'application finale.
 
-{{% notice style="orange" title="Question 3.17" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.18" icon="bolt" %}}
 Selon les pins choisies précédemment, connecté le capteur à votre carte Nucleo.
 {{% /notice %}}
 
-{{% notice style="orange" title="Question 3.18" icon="bolt" %}}
+{{% notice style="orange" title="Question 3.19" icon="bolt" %}}
 Pour notre application finale, nous aurons besoin de trois fonctions:
 1. `TIM3_Init` qui configure et initialise l'état du timer TIM3 au départ,
 1. `TIM3_Start` qui lance le fonctionnement du timer,
@@ -360,6 +373,19 @@ Plusieurs optimisations sont imaginables au niveau du code conçu jusqu'à maint
 
 Proposez et/ou testez une ou plusieurs de ces possibles optimisations.
 {{% /notice %}}
+
+## Communication avec une télécommande infrarouge
+
+{{< fig
+  fig="/fig/record/stm32/ir-remote.png"
+  alt=""
+  width=500px
+  caption="Télécommande et récepteur infrarouge"
+  subcaption=""
+  key="ir-remote"
+>}}
+
+
 
 ## Références
 

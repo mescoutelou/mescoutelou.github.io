@@ -80,7 +80,7 @@ Cependant, il est généralement possible de configurer les systèmes pour utili
 Pour cela, des diviseurs internes permettent alors de modifier l'allure de la trame selon la fréquence du système.
 
 Pour la suite de l'exercice, on considèrera la configuration suivante:
-- U(S)ART 2,
+- U(S)ART 1,
 - *Baud rate*: 9600,
 - *Stop bit*: 1,
 - Contrôle de la parité: activé,
@@ -94,6 +94,7 @@ Pour cela, utilisez le *Reference Manual* pour configurer l'UART et respecter la
 Validez ensuite votre configuration par le biais d'un oscilloscope en validant la trame visuellement.
 {{% expand title="Aide supplémentaire ..." %}}
 En plus du mode alternatif dans les GPIO nécessaires, la configuration de l'UART concernera ici principalement 3 registres: `BRR`, `CR1` et `CR2`.
+L'envoi de données se fait par 
 Ensuite, un registre supplémentaire `SR` nous donnera les informations sur l'état de l'UART.
 {{% /expand %}}
 {{% /notice %}}
@@ -114,7 +115,7 @@ Pour que les cartes puissent communiquer, il est nécessaire de croiser les conn
 {{% notice style="orange" title="Question 3" icon="bolt" %}}
 La réception d'une trame peut être très longue à l'échelle d'un système (des centaines ou milliers de cycles d'horloge selon la fréquence et le *baud rate*).
 Ainsi, il peut être pratique d'utiliser les interruptions pour ne traiter les octets reçu que lorsque c'est nécessaire.
-Pour cela, configurer les interruptions et la routine `USART2_IRQHandler(void)` pour que dès qu'un octet est reçu, l'état de la LED s'inverse et qu'un nouvel octet soit renvoyé.
+Pour cela, configurer les interruptions et la routine `USART1_IRQHandler(void)` pour que dès qu'un octet est reçu, l'état de la LED s'inverse et qu'un nouvel octet soit renvoyé.
 {{% /notice %}}
 
 ### Réception d'un octet (Ordinateur)
@@ -122,9 +123,10 @@ Pour cela, configurer les interruptions et la routine `USART2_IRQHandler(void)` 
 {{% notice style="orange" title="Question 4" icon="bolt" %}}
 Une communication UART peut également être effectuée par le biais d'un branchement USB.
 Ainsi, il est tout à fait possible d'envoyer/recevoir des trames exactement de la même manière avec un PC.
-Utilisez le USART2 pour communiquer avec votre ordinateur *via* le câble USB.
+Utilisez le *USART2* pour communiquer avec votre ordinateur *via* le câble USB.
 Pour visualiser les trames sous Windows, utilisez un script (*e.g.* Python) ou logiciel (*e.g.* IDE Arduino) de votre choix.
 {{% /notice %}}
+
 
 ## Références
 

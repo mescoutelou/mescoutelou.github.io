@@ -1,0 +1,12 @@
+{signal: [
+  {},
+  {name: 'CS', 		wave: '1...0................................1..'},
+  {name: 'SCLK', 	wave: 'l....hlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhl...'},
+  {name: 'MOSI', 	wave: 'x...3.3.3.3.3.3.3.3.5.5.5.5.5.5.5.5.x...', data: ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'W0', 'W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7']},
+  {name: 'MISO', 	wave: 'x...................4.4.4.4.4.4.4.4.x...', data: ['R0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7']},
+  {},
+  {},
+  {name: 'SCL', 	wave: 'h...lhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhl.'},
+  {name: 'SDA', 	wave: 'x...3.3.3.3.3.3.3.5.4.5.5.5.5.5.5.5.5.4.x.', data: ['A6', 'A5', 'A4', 'A3', 'A2', 'A1', 'A0', 'R/Wb', 'ACK', 'D7', 'D6', 'D5', 'D4', 'D3', 'D2', 'D1', 'D0', 'ACK']},
+  {},
+]}

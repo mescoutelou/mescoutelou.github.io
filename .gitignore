@@ -3,3 +3,4 @@
 *.hugo_build.lock
 .draft/
 /public
+*.DS_Store

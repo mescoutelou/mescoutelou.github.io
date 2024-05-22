@@ -15,7 +15,7 @@ draft: False
 ---
 
 {{% notice style="info" title="Objectifs" %}}
-Cette fiche vise à présenter une première utilise du bus UART sur un microcontrôleur STM32.
+Cette fiche vise à présenter une première utilisation du bus UART sur un microcontrôleur STM32.
 À la suite de cette page, un développeur logiciel doit être capable:
 - De trouver les informations nécessaires dans une datasheet pour l'utilisation du protocole UART,
 - De programmer les différents registres,
@@ -39,7 +39,7 @@ De même, deux carte ***Nucleo-F446RE*** seront utilisées.
 
 ## Transmission/Réception UART
 
-Lors de la conception d'un microcontrôleur, il est souvent utile de pouvoir échanger avec un autre système.
+Lors de la conception d'un système à base de microcontrôleur, il est souvent utile de pouvoir échanger des informations avec un autre système.
 Par exemple, c'est le cas lorsque l'on souhaite envoyer des données vers un ordinateur responsable du traitement ou du contrôle.
 Un protocole de transmission permet alors de mettre en place une interface commune pour l'échange de ces données.
 Selon les applications, il existe de multiples types de protocoles.
@@ -50,10 +50,10 @@ Dans le cadre de cet exercice, nous allons nous intéresser au protocole UART.
 Le protocole UART (pour *Universal Asynchronous Receiver Transmitter*) est un protocol de type asynchrone.
 Cela signifie qu'il permet d'envoyer des données entre deux systèmes sans signal d'horloge commun.
 Pour cela, la trame intègre des évènements permettant de détecter une émission.
-De plus, l'émetteur et le récepteur doivent avoir convenu d'un début commun au préalable.
+De plus, l'émetteur et le récepteur doivent avoir convenu d'un débit commun au préalable.
 
 Le protocole UART est un protocole réputé pour sa simplicité.
-Il ne contient que deux signaux, Tx et Rx respectivement dédiés à l'émission et à la réception.
+Il ne contient que deux signaux, Tx et Rx respectivement dédiés à l'émission et à la réception (donc un en entrée, l'autre en sortie).
 Ainsi, d'un point de vue matériel, son implémentation peut se résumer à 2 *FSMs* chargées de mettre en forme/lire les trames.
 Pour ces raisons, des contrôleurs UART sont présents dans la plupart des microcontrôleurs.
 
@@ -93,7 +93,7 @@ Tout d'abord, nous allons nous concentrer sur la partie émission.
 Pour cela, utilisez le *Reference Manual* pour configurer l'UART et respecter la configuration ci-dessus.
 Validez ensuite votre configuration par le biais d'un oscilloscope en validant la trame visuellement.
 {{% expand title="Aide supplémentaire ..." %}}
-En plus du mode alternatif dans les GPIO nécessaires, la configuration de l'UART concernera ici principaement 3 registres: `BRR`, `CR1` et `CR2`.
+En plus du mode alternatif dans les GPIO nécessaires, la configuration de l'UART concernera ici principalement 3 registres: `BRR`, `CR1` et `CR2`.
 Ensuite, un registre supplémentaire `SR` nous donnera les informations sur l'état de l'UART.
 {{% /expand %}}
 {{% /notice %}}

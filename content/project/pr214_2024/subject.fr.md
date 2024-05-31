@@ -6,7 +6,7 @@ tags:
 - "ISA"
 - "RISC-V"
 - "FPU"
-weight: 2
+weight: 1
 draft: false
 ---
 

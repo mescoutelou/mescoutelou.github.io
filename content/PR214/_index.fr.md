@@ -1,5 +1,5 @@
 ---
-archetype: "part"
+type: "part"
 title: "PR214"
 weight: 1
 draft: false

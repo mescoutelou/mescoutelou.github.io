@@ -1,5 +1,5 @@
 ---
-archetype: "page"
+type: "page"
 lang: "fr"
 title: "MI100: Architecture des microcontrôleurs"
 linktitle: "MI100"

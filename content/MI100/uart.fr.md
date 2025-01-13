@@ -1,5 +1,5 @@
 ---
-archetype: "page"
+type: "page"
 lang: "fr"
 title: "UART"
 linktitle: "UART"

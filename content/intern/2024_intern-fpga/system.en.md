@@ -1,5 +1,5 @@
 ---
-archetype: "page"
+type: "page"
 title: "System description"
 weight: 1
 draft: false

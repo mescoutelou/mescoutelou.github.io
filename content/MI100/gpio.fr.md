@@ -1,5 +1,5 @@
 ---
-archetype: "page"
+type: "page"
 lang: "fr"
 title: "Les entrées/sorties GPIO"
 linktitle: "GPIO"

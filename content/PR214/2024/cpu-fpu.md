@@ -1,5 +1,5 @@
 ---
-archetype: "page"
+type: "page"
 title: "Conception d'un processeur RISC-V avec une FPU découplée"
 linktitle: "CPU/FPU RISC-V"
 tags: 

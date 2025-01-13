@@ -1,5 +1,5 @@
 ---
-archetype: "home"
+type: "home"
 title: ""
 draft: false
 ---

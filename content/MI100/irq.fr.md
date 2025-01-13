@@ -1,5 +1,5 @@
 ---
-archetype: "page"
+type: "page"
 lang: "fr"
 title: "Requête d'interruptions"
 linktitle: "Interruptions"

@@ -1,5 +1,5 @@
 ---
-archetype: "chapter"
+type: "chapter"
 title: "Internship: Graphics and memory system design on FPGA"
 linktitle: "Internship: FPGA Graphics"
 weight: 2

@@ -1,5 +1,5 @@
 ---
-archetype: "page"
+type: "page"
 lang: "fr"
 title: "Développement sous STM32CubeIDE"
 linktitle: "STM32CubeIDE"

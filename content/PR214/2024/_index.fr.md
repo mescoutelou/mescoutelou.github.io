@@ -1,5 +1,5 @@
 ---
-archetype: "chapter"
+type: "chapter"
 title: "2024"
 linktitle: "2024"
 weight: 1

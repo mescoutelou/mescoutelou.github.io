@@ -1,15 +1,15 @@
 ---
 archetype: "page"
 lang: "fr"
-title: "Programmation sur STM32"
-linktitle: "STM32"
+title: "MI100: Architecture des microcontrôleurs"
+linktitle: "MI100"
 categories:
 - "Fiches"
 tags: 
 - "Arm"
 - "Langage C"
 - "Microcontrôleur"
-weight: 20
+weight: 1
 localref: True
 draft: False
 ---

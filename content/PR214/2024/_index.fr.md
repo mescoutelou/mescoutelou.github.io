@@ -1,7 +1,8 @@
 ---
-archetype: "part"
-title: "Projets"
-weight: 3
+archetype: "chapter"
+title: "2024"
+linktitle: "2024"
+weight: 1
 draft: false
 ---
 

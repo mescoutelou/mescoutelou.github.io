@@ -1,6 +1,7 @@
 ---
 archetype: "page"
-title: "Sujet"
+title: "Conception d'un processeur RISC-V avec une FPU découplée"
+linktitle: "CPU/FPU RISC-V"
 tags: 
 - "Processeur"
 - "ISA"
